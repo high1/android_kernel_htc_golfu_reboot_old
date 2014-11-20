@@ -676,7 +676,7 @@ unsigned long try_to_compact_pages(struct zonelist *zonelist,
 
 
 /* Compact all zones within a node */
-static int compact_node(int nid)
+static int compact_node(int nid, bool sync)
 {
 	int zoneid;
 	pg_data_t *pgdat;
@@ -694,6 +694,7 @@ static int compact_node(int nid)
 			.nr_freepages = 0,
 			.nr_migratepages = 0,
 			.order = -1,
+			.sync = sync,
 		};
 
 		zone = &pgdat->node_zones[zoneid];
